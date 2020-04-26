@@ -8,6 +8,7 @@ output:
     toc_depth: 3
     toc_float:
       collapsed: yes
+    keep_md: true
 ---
 
 ```{r setup, include=FALSE}
