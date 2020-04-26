@@ -1,0 +1,51 @@
+---
+title: "mobility_parks_country"
+author: 'Melanie Weynants'
+date: "April 24, 2020"
+output: 
+  pdf_document
+  html_document
+---
+
+```{r echo=FALSE, eval=TRUE, include=FALSE}
+library(knitr)
+library(tidyverse)
+
+cntry_name <- country_list %>% filter(iso2c == cntry) %>% select(country.name.en) %>% unlist()
+```
+
+### `r cntry_name`
+
+```{r echo=FALSE}
+if (nrow(mobility_country) > 0){
+  # country plot: is.na(sub_region_1)
+  p1 <- ggplot(mobility_country %>% 
+             filter(is.na(sub_region_1) & is.na(sub_region_2)),
+           aes(x = date, y = parks_percent_change_from_baseline)) + 
+      geom_col() +
+      ggtitle(cntry_name)
+  print(p1)
+  txt <- ""
+} else {
+  txt <- paste0("No mobility data in parks for ", cntry_name)
+}
+```
+`r txt`
+
+
+```{r echo=FALSE}
+  # sub region plot
+  mobility_region <- mobility_country %>%
+    filter(!is.na(sub_region_1) & is.na(sub_region_2)) 
+  if (nrow(mobility_region) > 0) {
+    ggplot(mobility_region,
+           aes(x = date, y = parks_percent_change_from_baseline, fill = sub_region_1)) + 
+      geom_col() +
+      facet_wrap(~sub_region_1) +
+      ggtitle(paste0(cntry_name, " - sub regional data")) +
+      theme(legend.position = "none")
+  }
+
+```
+
+\FloatBarrier

@@ -1,0 +1,32 @@
+---
+title: "mobility_parks_region"
+author: 'Melanie Weynants'
+date: "April 24, 2020"
+output: 
+  pdf_document
+  html_document
+---
+
+```{r echo=FALSE, eval=TRUE, include=FALSE}
+library(knitr)
+library(tidyverse)
+```
+## `r reg`
+
+```{r echo=FALSE, eval=TRUE, include=FALSE}
+out1 <- NULL
+for (cntry in (country_list %>% filter(region == reg) %>% select(iso2c) %>% unlist())) {
+    mobility_country <- mobility %>%
+      # select country
+      filter(country_region_code %in% cntry) %>%
+      # keep only entries that have parks data
+      filter(!is.na(parks_percent_change_from_baseline)) %>%
+      # select relevant columns
+      dplyr::select(country_region_code, country_region, date, parks_percent_change_from_baseline, sub_region_1, sub_region_2)
+  
+    # knit child rmd
+    env=new.env() #create a new empty environment, it inherits objects from the current environment.
+    out1 <- c(out1, knit_child('mobility_parks_country.Rmd', envir=env))
+}
+```
+`r paste(out1, collapse='\n')`

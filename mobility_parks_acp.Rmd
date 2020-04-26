@@ -1,0 +1,63 @@
+---
+title: "Mobility data in Parks in ACP countries"
+author: "M. Weynants"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document presents Google's COVID-19 Global Mobility Data for places like local parks, national parks, public beaches, marinas, dog parks, plazas, and public gardens, furthr referred to as parks in countries of the Africa, Caribbean and Pacific group of states.
+
+Data are downloaded from <https://www.google.com/covid19/mobility/>
+
+```{r data_loading, echo=FALSE, eval=TRUE, include=FALSE}
+library(tidyverse)
+library(rjson)
+library(countrycode)
+
+# download Google Global Mobility Report data
+mobility <- readr::read_csv("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv?cachebust=911a386b6c9c230f")
+# or if you dowload the file locally first
+# mobility <- readr::read_csv("Global_Mobility_Report.csv")
+
+# load ACP countries from DOPA REST services
+ACP_json <- fromJSON(file = "https://dopa-services.jrc.ec.europa.eu/services/d6biopamarest/d6biopama/get_tmp_acp_pa_stat?format=json", simplify = TRUE) 
+# fill NULL with NA
+for (i in 1:length(ACP_json$records)){
+  for (j in 1:length(ACP_json$records[[i]])){
+    if (is.null(ACP_json$records[[i]][[j]])){
+      ACP_json$records[[i]][[j]] <- NA
+    }
+  }
+}
+ACP <- as.data.frame(matrix(unlist(ACP_json$records), ncol = max(lengths(ACP_json$records)), byrow = TRUE), stringsAsFactors = FALSE)
+names(ACP) <- names(ACP_json$records[[which(lengths(ACP_json$records)>0)[1]]])
+
+# get iso2 codes
+country_list <- ACP %>%
+  select(region, iso3, country) %>%
+  left_join(codelist %>%  select(iso3c,iso2c, country.name.en), by = c("iso3" = "iso3c"))
+```
+
+```{r loop, echo=FALSE, eval=TRUE, include=FALSE}
+# initiate loop
+out <- NULL
+# loop on regions/countries
+for (reg in country_list %>% select(region) %>% distinct() %>% unlist()){
+  # knit child rmd
+    env=new.env() #create a new empty environment, it inherits objects from the current environment.
+    out <- c(out, knit_child('mobility_parks_region.Rmd', envir=env))
+    
+}
+
+```
+`r paste(out, collapse='\n')`
