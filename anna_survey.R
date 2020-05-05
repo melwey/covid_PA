@@ -32,6 +32,10 @@ wdpa <- wdpa %>%
   mutate(name_low = tolower(name)) %>%
   mutate(name_desig = tolower(paste(name, desig_eng)))
 
+countries <- wdpa %>%
+  select(iso3, country_name) %>%
+  distinct()
+
 # compare anna_sites_mod$name with wdpa$name
 ind <- anna_sites_mod$name %in% wdpa$name
 sum(ind)/length(ind)
@@ -65,8 +69,51 @@ anna_sites_wdpa <- anna_sites_mod %>%
   select(-wdpaid, -wdpaid.x, -wdpaid.y, -name_low) %>%
   # join with wdpa once more to get country
   left_join(wdpa %>%
-              select(wdpaid, orig_name, desig, desig_eng, desig_type, marine, status, status_yr, gov_type, iso3, country_name),
-              by = c("WDPAID" = "wdpaid"))
+              select(wdpaid, iso3, country_name),
+              by = c("WDPAID" = "wdpaid")) %>%
+  # add iso3 for countries without wdpaid
+  left_join(countries, by = c("country" = "country_name"))
 
+# export anna_sites_wdpa for manual editing
+write_excel_csv(anna_sites_wdpa, "anna_sites_wdpa.csv")
+# manually edit file and save as xlsx
+# NB I edited from R1:R222
+# load edited file
+anna_sites_xl <- readxl::read_xlsx("anna_sites_wdpa.xlsx", sheet = 1)
+# entries should have ID, name, WDPAID or iso3.y and district or KLC/TFCA
+anna_sites_clean <- anna_sites_xl %>%
+  select(ID, name, WDPAID, iso3.y, Note, district, `KLC/TFCA`) %>%
+  # join with wdpa to get countries
+  left_join(wdpa %>% select(wdpaid, iso3), by = c("WDPAID" = "wdpaid")) %>%
+  # rename iso3 to iso3.x
+  rename(iso3.x = iso3) %>%
+  # keep only one iso3
+  mutate(iso3 = if_else(!is.na(iso3.x), iso3.x, iso3.y)) %>%
+  # select columns
+  select(ID, name, WDPAID, iso3, Note, district, `KLC/TFCA`) %>%
+  # select only the ID I've worked on
+  filter(ID <= "R222")
+
+save(anna_sites_clean, file = "anna_sites_clean_R1_R222.rdata")
+
+anna_pa <- anna_sites_clean %>%
+  select(WDPAID) %>%
+  distinct() %>%
+  left_join(wdpa_sf)
+
+
+# country map
+library(rnaturalearth)
+world <- ne_countries(scale = "medium", returnclass = "sf")
+anna_countries <- anna_sites_clean %>%
+  select(ID, iso3) %>%
+  distinct() %>%
+  group_by(iso3) %>%
+  summarise(n()) %>%
+  right_join(world %>% select(iso_a3, geometry),
+            by = c("iso3" = "iso_a3")) 
+  
+ggplot(data = anna_countries) +
+  geom_sf(aes(fill = `n()`, geometry = geometry))
 
 
