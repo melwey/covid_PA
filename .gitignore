@@ -11,11 +11,9 @@
 /data
 # mobility parks files
 /rsconnect
-<<<<<<< HEAD
+
 mobility_parks_acp_files/figure-html/**
-=======
-mobility_parks_acp_files/**/**
->>>>>>> 3a12e1a36690169c3366329136a8d42444ede7ff
+
 
 # heavy outputs
 fig/
