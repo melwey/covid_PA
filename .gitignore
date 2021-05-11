@@ -2,6 +2,20 @@
 .Rhistory
 .RData
 .Ruserdata
-Global_Mobility_report.csv
+
+# mac
 .DS_Store
-mobility_parks_acp.html
+
+*.html
+# geo data
+/data
+# mobility parks files
+/rsconnect
+mobility_parks_acp_files/**
+
+# heavy outputs
+fig/
+maps/
+
+# qgis projects
+*.qgz
