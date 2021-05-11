@@ -1,7 +1,7 @@
 ---
 title: "Mobility data in Parks in ACP countries"
 author: "M. Weynants"
-date: "26 April, 2020"
+date: "14 October, 2020"
 output: 
   html_document:
     toc: yes
@@ -36,7 +36,7 @@ Data are downloaded from <https://www.google.com/covid19/mobility/>
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -49,7 +49,7 @@ Data are downloaded from <https://www.google.com/covid19/mobility/>
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -62,7 +62,7 @@ Data are downloaded from <https://www.google.com/covid19/mobility/>
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -114,7 +114,7 @@ No mobility data in parks for Dominica
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -153,7 +153,7 @@ No mobility data in parks for Guyana
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-32-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -166,7 +166,7 @@ No mobility data in parks for Guyana
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -276,7 +276,7 @@ No mobility data in parks for Central African Republic
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-61-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -315,7 +315,7 @@ No mobility data in parks for Congo - Brazzaville
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-70-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -425,7 +425,7 @@ No mobility data in parks for Ethiopia
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-96-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -477,7 +477,7 @@ No mobility data in parks for South Sudan
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-108-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -490,7 +490,7 @@ No mobility data in parks for South Sudan
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-111-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -710,7 +710,7 @@ No mobility data in parks for Samoa
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-163-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -723,7 +723,7 @@ No mobility data in parks for Samoa
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-166-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -775,7 +775,7 @@ No mobility data in parks for Madagascar
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-178-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -879,7 +879,7 @@ No mobility data in parks for Seychelles
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-202-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -898,7 +898,7 @@ No mobility data in parks for Seychelles
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-207-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -911,7 +911,7 @@ No mobility data in parks for Seychelles
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-210-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -924,7 +924,7 @@ No mobility data in parks for Seychelles
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-213-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -937,7 +937,7 @@ No mobility data in parks for Seychelles
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-216-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -1041,7 +1041,7 @@ No mobility data in parks for Mauritania
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-240-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -1067,7 +1067,7 @@ No mobility data in parks for Mauritania
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-246-1.png)<!-- -->
 
 \FloatBarrier
 
@@ -1093,6 +1093,6 @@ No mobility data in parks for Sierra Leone
 
 
 
-
+![](mobility_parks_acp_files/figure-html/unnamed-chunk-252-1.png)<!-- -->
 
 \FloatBarrier

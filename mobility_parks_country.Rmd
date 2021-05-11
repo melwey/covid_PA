@@ -22,7 +22,7 @@ if (nrow(mobility_country) > 0){
   p1 <- ggplot(mobility_country %>% 
              filter(is.na(sub_region_1) & is.na(sub_region_2)),
            aes(x = date, y = parks_percent_change_from_baseline)) + 
-      geom_col() +
+      geom_line() +
       ggtitle(cntry_name)
   print(p1)
   txt <- ""
